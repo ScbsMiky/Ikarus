@@ -1,8 +1,8 @@
-import { Author, Channel, Guild, User } from "../../libs/ikarus/types";
+import { Channel, Guild, RelationShip, User } from "../../libs/ikarus/types";
 
 export type SideListProps = {
   user: User;
   guild?: Guild;
-  boxes: Channel[ ] | Author[ ];
+  boxes: Channel[ ] | RelationShip[ ];
   onSelect(id: string): any;
 };

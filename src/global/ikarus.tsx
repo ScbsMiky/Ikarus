@@ -1,5 +1,9 @@
 import { createContext } from "react";
 
-import Ikarus from "../libs/ikarus/ikarus";
+import { Guild, RelationShip, User } from "../libs/ikarus/types";
 
-export const GlobalIkarus = createContext({ } as Ikarus);
+export const GlobalIkarus = createContext<{ user: User, guilds: Guild[ ], relations: RelationShip[ ] }>({
+  user: { } as User,
+  guilds: [ ],
+  relations: [ ],
+});

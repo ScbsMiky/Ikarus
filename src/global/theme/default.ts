@@ -7,13 +7,14 @@ export const MainTheme = {
       background: "#141414"
     },
     side: {
-      header: "#00000042",
-      footer: "#00000042",
+      header: "#141414",
+      footer: "#141414",
       background: "#202020",
     },
     channel: {
-      header: "#00000042",
-      footer: "#00000042",
+      chat: "#202020",
+      header: "#141414",
+      footer: "#202020",
       background: "#303030",
     }
   }

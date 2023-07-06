@@ -15,17 +15,15 @@ class Ikarus extends Listener {
 
   private actions: (( ) => any)[ ] = [ ];
 
-  constructor(token: string) {
+  constructor(token?: string) {
     super( );
-
-    this.token = token;
-
+    
     this.user = { } as User;
     this.guilds = [ ];
     this.relations = [ ];
-
+    
     if(token) {
-      this.connect( );
+      this.connect(token);
     };
 
     this.on("READY", (data) => {

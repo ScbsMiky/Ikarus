@@ -11,30 +11,27 @@ import { MainTheme } from "./global/theme/default";
 
 import { ThemeProvider } from "styled-components";
 import usePersisted from "./libs/usePersisted";
+import { Guild, RelationShip, User } from "./libs/ikarus/types";
 
 const App: React.FC = ( ) => {
   const [token] = usePersisted("token", "");
 
-  const [ikarus] = useState(new Ikarus(token));
-  const [globalIkarus, setGlobalIkarus] = useState<Ikarus>({ ...ikarus } as Ikarus);
-
-  const updateIkarus = ( ) => {
-    setGlobalIkarus({
-      token: ikarus.token,
-      user: ikarus.user,
-      guilds: ikarus.guilds,
-      relations: ikarus.relations
-    } as Ikarus);
-
-    console.log(ikarus.relations)
-  };
+  const [user, setUser] = useState<User>({ } as User);
+  const [guilds, setGuilds] = useState<Guild[ ]>([ ]);
+  const [relations, setRelations] = useState<RelationShip[ ]>([ ]);
 
   useEffect(( ) => {
-    ikarus.on("READY", ( ) => updateIkarus( ));
+    const ikarus = new Ikarus(token);
+
+    ikarus.on("READY", ( ) => {
+      setUser(ikarus.user);
+      setGuilds(ikarus.guilds);
+      setRelations(ikarus.relations);
+    });
   }, [ ]);
 
   return (
-    <GlobalIkarus.Provider value={globalIkarus}>
+    <GlobalIkarus.Provider value={{ user, guilds, relations }}>
       <ThemeProvider theme={MainTheme}>
         <Container>
           <GlobalStyle />
